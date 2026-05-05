@@ -98,6 +98,7 @@ The final repository combines the original FACT framework with additional format
 ├── .gitmodules                     # Git submodule configuration
 ├── .gitignore
 └── README.md
+```
 
 The utils/ directory contains the additional scripts used to prepare and inspect the FS-Jump3D pose data for this project.
 

@@ -99,7 +99,15 @@ The final repository combines the original FACT framework with additional format
 ├── .gitignore
 └── README.md
 
-The CVPR2024-FACT/ directory contains the original FACT framework used as the base model. The utils/ directory contains the additional scripts used to prepare and inspect the FS-Jump3D pose data for this project.
+The utils/ directory contains the additional scripts used to prepare and inspect the FS-Jump3D pose data for this project.
+
+## Relation with FACT
+
+This repository uses [CVPR2024-FACT](https://github.com/marcorags/CVPR2024-FACT) as a Git submodule.
+
+FACT is the base Temporal Action Segmentation framework used in this project. The main repository contains the project-specific documentation, preprocessing utilities, setup instructions, and FS-Jump3D adaptation logic, while the `CVPR2024-FACT/` submodule contains the FACT framework used for training and evaluation.
+
+The submodule is pinned to a specific commit to keep the experimental setup reproducible.
 
 ## Installation
 

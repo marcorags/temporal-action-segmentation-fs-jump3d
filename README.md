@@ -254,7 +254,7 @@ This project was developed collaboratively by:
 
 A detailed explanation of the project, methodology, experimental setup, and discussion is available in the project report:
 
-[Read the project report](./SIV_Report_Fiorentino_Ragusa.pdf)
+[Read the project report](./docs/Project_Report.pdf)
 
 ## Credits and References
 

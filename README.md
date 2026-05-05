@@ -106,7 +106,9 @@ The utils/ directory contains the additional scripts used to prepare and inspect
 
 This repository uses [CVPR2024-FACT](https://github.com/marcorags/CVPR2024-FACT) as a Git submodule.
 
-FACT is the base Temporal Action Segmentation framework used in this project. The main repository contains the project-specific documentation, preprocessing utilities, setup instructions, and FS-Jump3D adaptation logic, while the `CVPR2024-FACT/` submodule contains the FACT framework used for training and evaluation.
+The submodule is a fork of the original FACT repository, used as the base Temporal Action Segmentation framework for this project. We adapted this fork to support the FS-Jump3D experimental setup, including project-specific configuration and evaluation changes.
+
+The main repository contains the project documentation, preprocessing utilities, setup instructions, and FS-Jump3D-specific workflow. The `CVPR2024-FACT/` submodule contains the FACT framework used for training and evaluation.
 
 The submodule is pinned to a specific commit to keep the experimental setup reproducible.
 

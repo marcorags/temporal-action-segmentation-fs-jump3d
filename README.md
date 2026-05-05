@@ -88,14 +88,14 @@ The final repository combines the original FACT framework with additional format
 
 ```text
 .
-├── CVPR2024-FACT/                  # FACT framework used as the base TAS model
-├── utils/                          # Data formatting and 3D pose utility scripts
-│   ├── format.py                   # Preprocessing script for FS-Jump3D data
-│   ├── rig.json                    # Skeleton / pose structure information
-│   └── visualization_pose3d.py     # 3D pose visualization utility
+├── CVPR2024-FACT/                   # FACT framework used as Git submodule
+├── utils/                           # Project-specific preprocessing and visualization utilities
+│   ├── format.py                    # Formats FS-Jump3D JSON data for the FACT pipeline
+│   ├── rig.json                     # Skeleton / pose mapping used during preprocessing
+│   └── visualization_pose3d.py      # Utility script for inspecting 3D pose sequences
 ├── SIV_Report_Fiorentino_Ragusa.pdf # Project report
-├── requirements.txt                # Python dependencies
-├── .gitmodules                     # Git submodule configuration
+├── requirements.txt                 # Python dependencies
+├── .gitmodules                      # Git submodule configuration
 ├── .gitignore
 └── README.md
 ```

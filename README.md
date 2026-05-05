@@ -1,59 +1,256 @@
-# SIV_UniTN_TAS_project
+# Temporal Action Segmentation on FS-Jump3D
 
-This repository contains code and documentation of the final project developed for the course _Signal, Image & Video_ taught at **University of Trento**.
+This repository contains a collaborative university project focused on **Temporal Action Segmentation (TAS)** using 3D pose sequences from the **FS-Jump3D** dataset.
 
-In this project, we replicate and adapt the **Frame-Action Cross-Attention Temporal Modelling (FACT)** model for **Temporal Action Segmentation (TAS)** to a simplified scenario based on the **FS-Jump3D** dataset, which contains 3D pose sequences of figure skating jumps. Our objective is to evaluate how FACT behaves in a context where each video contains a single annotated action segment, without complex transitions or background actions. This setup allows us to observe how the model processes pose-only input and whether its temporal reasoning capabilities remain effective even in a constrained setting.
+We adapted a FACT-based Temporal Action Segmentation pipeline to a simplified figure skating scenario, where each sequence contains a single annotated action segment. The goal of the project is to evaluate how a temporal segmentation model originally designed for more complex action segmentation benchmarks behaves when applied to pose-only figure skating jump data.
 
-A more detailed explanation of the project is available [here](https://github.com/marcorags/SIV_UniTN_TAS_project/blob/main/SIV_Report_Fiorentino_Ragusa.pdf).
+---
 
-## Preparation
+## Project Context
 
-1. Clone the main repo [SIV_UniTN_TAS_project](https://github.com/marcorags/SIV_UniTN_TAS_project) including also the submodule:
-    - ``` git clone –recurse-submodules https://github.com/marcorags/SIV_UniTN_TAS_project ```
-    - Otherwise, if the repo was already cloned: ``` git submodule update –init –recursive ```
-2. Move into the folder:
-    - ``` cd .\SIV_UniTN_TAS_project ```
-3. Install the requirements:
-    - ``` pip install -r requirements.txt ```
-4. Download the json dataset from [FS-Jump3D](https://github.com/ryota-skating/FS-Jump3D) following the instructions.
-5. Create folder data in CVPR2024-FACT:
-    - ```mkdir  .\CVPR2024-FACT\data```
+This project was developed collaboratively by **Marco Ragusa** and **Edoardo Fiorentino** as part of the *Signal, Image & Video* course at the **University of Trento**.
 
-## Format Data
+The repository has been reorganized and documented to make the methodology, setup, and experimental choices easier to understand and reproduce.
 
-Before feeding the dataset to the FACT model preprocess it.
-From the ./SIV_UniTN_TAS_project folder run:
+---
 
-``` py ./utils/format.py ```
+## Overview
+
+Temporal Action Segmentation aims to assign an action label to each frame of a temporal sequence. In standard TAS benchmarks, videos often contain multiple actions, transitions, and background segments.
+
+In this project, we explored a more constrained setting based on figure skating jumps:
+
+- the input data consists of 3D pose sequences;
+- each sequence represents a figure skating jump trial;
+- the segmentation setting is simplified to a single annotated action segment;
+- the model is evaluated on pose-only temporal information, without RGB frames.
+
+The project is based on the **Frame-Action Cross-Attention Temporal Modelling (FACT)** framework, adapted to work with the FS-Jump3D data format.
+
+---
+
+## Dataset
+
+The project uses the **FS-Jump3D** dataset, which provides 3D pose sequences of figure skating jumps.
+
+The dataset is organized around:
+
+- athletes;
+- jump types;
+- individual jump trials;
+- 3D skeleton keypoints over time.
+
+Dataset files are **not included** in this repository. To reproduce the experiments, download the JSON version of FS-Jump3D from the official dataset source and place it according to the expected project structure.
+
+Expected structure:
+
+```text
+temporal-action-segmentation-fs-jump3d/
+├── CVPR2024-FACT/
+│   └── data/
+│       └── json/
+│           └── ...
+├── utils/
+├── requirements.txt
+└── README.md
+```
+
+
+
+## Methodology
+
+The project follows a pipeline designed to adapt a Temporal Action Segmentation framework to 3D pose-based figure skating data.
+
+First, we downloaded the FS-Jump3D dataset in JSON format. The dataset contains 3D pose sequences representing figure skating jump trials.
+
+Then, we formatted the raw JSON files into the structure expected by the FACT framework. This step involved preparing the pose sequences, organizing the input files, and adapting the dataset representation to the temporal segmentation pipeline.
+
+After preprocessing, we configured the FACT framework for the FS-Jump3D setting. Since the original framework was designed for standard Temporal Action Segmentation benchmarks, we adapted the experimental setup to a simplified scenario where each sequence contains a single annotated action segment.
+
+Finally, we trained and evaluated the model on the formatted 3D pose sequences. The goal was to analyze whether a FACT-based temporal model could be applied to pose-only figure skating jump data, while also identifying the limitations of this simplified setup.
+
+## What We Built
+
+In this project, we adapted a Temporal Action Segmentation pipeline to work with 3D pose sequences from the FS-Jump3D dataset.
+
+More specifically, we:
+
+- integrated the FACT framework as the base Temporal Action Segmentation model;
+- prepared utility scripts to format FS-Jump3D JSON pose data for the FACT pipeline;
+- organized the input data structure required for training and evaluation;
+- configured the project for a simplified pose-based segmentation setting;
+- worked with 3D skeleton sequences instead of RGB video features;
+- analyzed the applicability and limitations of FACT in this constrained figure skating scenario.
+
+The final repository combines the original FACT framework with additional formatting and utility code needed to run experiments on FS-Jump3D.
+
+## Repository Structure
+
+```text
+.
+├── CVPR2024-FACT/                  # FACT framework used as the base TAS model
+├── utils/                          # Data formatting and 3D pose utility scripts
+│   ├── format.py                   # Preprocessing script for FS-Jump3D data
+│   ├── rig.json                    # Skeleton / pose structure information
+│   └── visualization_pose3d.py     # 3D pose visualization utility
+├── SIV_Report_Fiorentino_Ragusa.pdf # Project report
+├── requirements.txt                # Python dependencies
+├── .gitmodules                     # Git submodule configuration
+├── .gitignore
+└── README.md
+
+The CVPR2024-FACT/ directory contains the original FACT framework used as the base model. The utils/ directory contains the additional scripts used to prepare and inspect the FS-Jump3D pose data for this project.
+
+## Installation
+
+Clone the repository together with its submodule:
+
+```bash
+git clone --recurse-submodules https://github.com/marcorags/temporal-action-segmentation-fs-jump3d.git
+cd SIV_UniTN_TAS_project
+```
+
+If the repository was already cloned without the submodule, initialize it with:
+
+```bash
+git submodule update --init --recursive
+```
+
+Install the required Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Recommended environment:
+
+```text
+Python >= 3.8
+PyTorch 1.12.0
+CUDA-compatible GPU recommended
+```
+
+## Data Preparation
+
+Download the FS-Jump3D dataset in JSON format from the official dataset source.
+
+Then, create the data directory inside the FACT framework folder:
+
+```bash
+mkdir -p CVPR2024-FACT/data
+```
+
+Place the downloaded JSON dataset inside the `CVPR2024-FACT/data/` directory.
+
+The expected structure is:
+
+```text
+temporal-action-segmentation-fs-jump3d/
+├── CVPR2024-FACT/
+│   └── data/
+│       └── json/
+│           └── ...
+├── utils/
+│   └── format.py
+├── requirements.txt
+└── README.md
+```
+
+After placing the dataset in the correct location, run the formatting script from the repository root:
+
+```bash
+python utils/format.py
+```
+
+This script preprocesses the FS-Jump3D JSON files and converts them into the format required by the FACT training pipeline.
 
 ## Training
 
-Now it's time to train the model:
+After formatting the FS-Jump3D data, the model can be trained using the FACT training pipeline.
 
-```shell
-python -m CVPR2024-FACT.train --cfg CVPR2024-FACT/configs/fsjump.yaml 
+From the repository root, run:
+
+```bash
+python -m CVPR2024-FACT.train --cfg CVPR2024-FACT/configs/fsjump.yaml
 ```
 
-To modify the model parameters refer to the ./CVPR2024-FACT/configs/fsjump.yaml file.
+The training configuration can be modified in:
+
+```text
+CVPR2024-FACT/configs/fsjump.yaml
+```
+
+This file contains the main parameters used to configure the model, dataset paths, and training setup for the FS-Jump3D experiment.
 
 ## Evaluation
 
-To evaluate the model run:
+After training, the model can be evaluated with the FACT evaluation script.
 
-```shell
+From the repository root, run:
+
+```bash
 python -m CVPR2024-FACT.eval
 ```
 
-## Additional Notes
-- Ensure that Python is installed on your system (recommended version: >=3.8).
-- If you encounter issues with the packages or running the code, verify that all dependencies listed in `requirements.txt` have been correctly installed.
+The evaluation step is used to analyze the behavior of the adapted FACT model on the simplified FS-Jump3D Temporal Action Segmentation setting.
 
-## Report
-The report (a brief explanation of the project and its conceptualization) can be read [here](https://github.com/marcorags/SIV_UniTN_TAS_project/blob/main/SIV_Report_Fiorentino_Ragusa.pdf)
+## Results
 
-## Credits
+The project focuses on evaluating the applicability of a FACT-based Temporal Action Segmentation model to pose-only figure skating jump sequences.
 
-This project was inspired by:
+In this simplified setup, each sequence contains a single annotated action segment. This makes the task different from standard Temporal Action Segmentation benchmarks, where videos usually contain multiple action classes, transitions, and background segments.
+
+| Setting | Input Data | Task | Main Observation |
+|---|---|---|---|
+| FACT adaptation on FS-Jump3D | 3D pose sequences | Simplified Temporal Action Segmentation | The model was tested in a constrained scenario with one annotated action segment per sequence. |
+| Pose-only setup | 3D skeleton coordinates | Frame-level temporal modeling | The experiment evaluates temporal reasoning without using RGB frames or appearance features. |
+
+Detailed discussion of the experimental setup, assumptions, and interpretation is available in the project report.
+
+## Limitations
+
+This project works with a simplified version of the Temporal Action Segmentation task.
+
+The main limitations are:
+
+- each sequence contains a single annotated action segment;
+- the setup does not model transitions between multiple action classes;
+- background actions are not explicitly represented;
+- the model uses 3D pose data only, without RGB frames or visual appearance features;
+- fine-grained figure skating phase segmentation is not fully addressed in this version.
+
+Because of these constraints, the project should be interpreted as an adaptation and feasibility study rather than as a complete fine-grained Temporal Action Segmentation benchmark.
+
+## Future Work
+
+Possible extensions of this project include:
+
+- adding fine-grained phase labels for figure skating jump procedures;
+- modeling multiple temporal phases within each jump sequence;
+- introducing background or transition classes;
+- comparing FACT with simpler temporal baselines;
+- improving the preprocessing pipeline;
+- adding visualizations of predicted vs. ground-truth temporal segments;
+- evaluating performance separately across different jump types;
+- integrating additional features beyond 3D pose coordinates.
+
+## Contributors
+
+This project was developed collaboratively by:
+
+- Marco Ragusa
+- Edoardo Fiorentino
+
+  ## Report
+
+A detailed explanation of the project, methodology, experimental setup, and discussion is available in the project report:
+
+[Read the project report](./SIV_Report_Fiorentino_Ragusa.pdf)
+
+## Credits and References
+
+This project builds on and refers to the following resources:
+
 - [CVPR2024-FACT](https://github.com/ZijiaLewisLu/CVPR2024-FACT)
 - [FS-Jump3D](https://github.com/ryota-skating/FS-Jump3D)
 - [3D Pose-Based Temporal Action Segmentation for Figure Skating: A Fine-Grained and Jump Procedure-Aware Annotation Approach](https://arxiv.org/abs/2408.16638)

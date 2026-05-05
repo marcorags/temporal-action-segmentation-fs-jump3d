@@ -93,7 +93,8 @@ The final repository combines the original FACT framework with additional format
 │   ├── format.py                    # Formats FS-Jump3D JSON data for the FACT pipeline
 │   ├── rig.json                     # Skeleton / pose mapping used during preprocessing
 │   └── visualization_pose3d.py      # Utility script for inspecting 3D pose sequences
-├── SIV_Report_Fiorentino_Ragusa.pdf # Project report
+├── docs/
+│   └── Project_Report.pdf           # Project report
 ├── requirements.txt                 # Python dependencies
 ├── .gitmodules                      # Git submodule configuration
 ├── .gitignore
@@ -118,7 +119,7 @@ Clone the repository together with its submodule:
 
 ```bash
 git clone --recurse-submodules https://github.com/marcorags/temporal-action-segmentation-fs-jump3d.git
-cd SIV_UniTN_TAS_project
+cd temporal-action-segmentation-fs-jump3d
 ```
 
 If the repository was already cloned without the submodule, initialize it with:

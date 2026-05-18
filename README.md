@@ -31,7 +31,7 @@ The project is based on the **Frame-Action Cross-Attention Temporal Modelling (F
 
 ## Dataset
 
-The project uses the **FS-Jump3D** dataset, which provides 3D pose sequences of figure skating jumps.
+The project uses the [**FS-Jump3D**](https://github.com/ryota-skating/FS-Jump3D) dataset, which provides 3D pose sequences of figure skating jumps.
 
 The dataset is organized around:
 

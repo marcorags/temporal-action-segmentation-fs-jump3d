@@ -144,7 +144,7 @@ CUDA-compatible GPU recommended
 
 ## Data Preparation
 
-Download the FS-Jump3D dataset in JSON format from the official dataset source.
+Download the [FS-Jump3D dataset](https://github.com/ryota-skating/FS-Jump3D) in JSON format from the official dataset source.
 
 Then, create the data directory inside the FACT framework folder:
 
@@ -217,7 +217,7 @@ In this simplified setup, each sequence contains a single annotated action segme
 | FACT adaptation on FS-Jump3D | 3D pose sequences | Simplified Temporal Action Segmentation | The model was tested in a constrained scenario with one annotated action segment per sequence. |
 | Pose-only setup | 3D skeleton coordinates | Frame-level temporal modeling | The experiment evaluates temporal reasoning without using RGB frames or appearance features. |
 
-Detailed discussion of the experimental setup, assumptions, and interpretation is available in the project report.
+Detailed discussion of the experimental setup, assumptions, and interpretation is available in the [project report](./docs/Project_Report.pdf).
 
 ## Limitations
 

@@ -8,7 +8,7 @@ We adapted a FACT-based Temporal Action Segmentation pipeline to a simplified fi
 
 ## Project Context
 
-This project was developed collaboratively by **Marco Ragusa** and **Edoardo Fiorentino** as part of the *Signal, Image & Video* course at the **University of Trento**.
+This project was developed collaboratively by [**Marco Ragusa**](https://github.com/marcorags) and [**Edoardo Fiorentino**](https://github.com/edofiore) as part of the *Signal, Image & Video* course at the **University of Trento**.
 
 The repository has been reorganized and documented to make the methodology, setup, and experimental choices easier to understand and reproduce.
 
